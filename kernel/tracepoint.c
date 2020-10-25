@@ -25,6 +25,7 @@ EXPORT_SYMBOL_GPL(tracepoint_srcu);
 static const int tracepoint_debug;
 
 #ifdef CONFIG_MODULES
+
 /*
  * Tracepoint module list mutex protects the local module list.
  */
@@ -149,6 +150,7 @@ func_add(struct tracepoint_func **funcs, struct tracepoint_func *tp_func,
 				return ERR_PTR(-EEXIST);
 		}
 	}
+	
 	/* + 2 : one for new probe, one for NULL func */
 	new = allocate_probes(nr_probes + 2);
 	if (new == NULL)
@@ -521,6 +523,7 @@ static void tracepoint_module_going(struct module *mod)
 			break;
 		}
 	}
+	
 	/*
 	 * In the case of modules that were tainted at "coming", we'll simply
 	 * walk through the list without finding it. We cannot use the "tainted"
